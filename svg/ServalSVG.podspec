@@ -6,12 +6,12 @@ Pod::Spec.new do |s|
   s.homepage         = 'https://github.com/lynx-family/serval-kit'
 
   # Replace with the path to your library source directory
-  s.source                = { :git => 'git@github.com:lynx-family/serval-kit.git', :tag => s.version }
+  s.source                = { :git => 'https://github.com/lynx-family/serval-kit.git', :tag => s.version }
 
   # Replace with the path to your library header files
 #   s.ios.public_header_files = 'path/to/headers/**/*.h'
 
-  s.license          = 'MIT'
+  s.license          = { :type => 'Apache-2.0', :file => 'LICENSE' }
 
   s.author           = { 'thendlessky' => 'fncdong@gmail.com' }
 
@@ -139,8 +139,11 @@ Pod::Spec.new do |s|
   #                   "src/SVGRenderEngine.cc"
 
   s.description  = <<-DESC
-          SVG parser and render
-                       DESC
+    ServalSVG provides an SVG parsing and rendering engine for iOS.
+    It includes DOM parsing, gradient support, shapes, paths and text rendering,
+    with platform-specific canvas implementations and sample projects to help
+    integrate into existing apps.
+  DESC
 
   s.pod_target_xcconfig = {
     "GCC_PREPROCESSOR_DEFINITIONS" => "OS_IOS=1",
