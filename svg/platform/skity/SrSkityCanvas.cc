@@ -12,7 +12,7 @@
 #include <stdexcept>
 #include <string>
 
-// 将 Unicode 码点写入 UTF-8
+// write Unicode code point into UTF-8
 static inline void AppendUtf8(std::string& out, uint32_t cp) {
   if (cp <= 0x7F) {
     out.push_back(static_cast<char>(cp));
@@ -35,7 +35,7 @@ static inline uint16_t LoadU16BE(const uint8_t* p) {
   return static_cast<uint16_t>((uint16_t(p[0]) << 8) | p[1]);
 }
 
-// 主要转换函数：UTF-16BE（无 BOM）→ UTF-8
+// main conversion: UTF-16BE (no BOM) → UTF-8
 std::string Utf16BE_To_Utf8_NoBOM(const void* raw, size_t size_bytes) {
   if (size_bytes % 2 != 0) {
     throw std::runtime_error("Invalid UTF-16BE byte length");
@@ -44,14 +44,14 @@ std::string Utf16BE_To_Utf8_NoBOM(const void* raw, size_t size_bytes) {
   const uint8_t* end = p + size_bytes;
 
   std::string out;
-  out.reserve(size_bytes);  // 粗略预估
+  out.reserve(size_bytes);  // rough estimate
 
   while (p < end) {
     uint16_t w1 = LoadU16BE(p);
     p += 2;
 
     if (w1 >= 0xD800 && w1 <= 0xDBFF) {
-      // 高代理项，必须跟低代理项
+      // high surrogate must be followed by low surrogate
       if (p >= end)
         throw std::runtime_error("Truncated surrogate pair");
       uint16_t w2 = LoadU16BE(p);
@@ -64,7 +64,7 @@ std::string Utf16BE_To_Utf8_NoBOM(const void* raw, size_t size_bytes) {
     } else if (w1 >= 0xDC00 && w1 <= 0xDFFF) {
       throw std::runtime_error("Unpaired low surrogate");
     } else {
-      // 基本多文种平面 BMP
+      // Basic Multilingual Plane (BMP)
       AppendUtf8(out, w1);
     }
   }
@@ -692,7 +692,7 @@ std::shared_ptr<::skity::Shader> ConvertToRadialGradientShader(
 std::string CleanInvalidNulls(const void* raw, size_t size_bytes) {
   const char* src = static_cast<const char*>(raw);
   std::string out;
-  out.reserve(size_bytes);  // 预留空间
+  out.reserve(size_bytes);  // reserve capacity
   for (size_t i = 0; i < size_bytes; ++i) {
     if (src[i] != 0) {
       out.push_back(src[i]);

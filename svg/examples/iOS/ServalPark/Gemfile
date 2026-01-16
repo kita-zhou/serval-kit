@@ -4,11 +4,11 @@ source "https://rubygems.org"
 
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-# iOS 项目常用工具
-# - CocoaPods：iOS 依赖管理
-# - Fastlane：CI/发布自动化
-# - xcpretty：Xcode 构建日志美化
-# - dotenv：从 .env 读取环境变量
-# - cocoapods-deintegrate / cocoapods-clean：清理 Pod 相关文件
+# Common tools for iOS projects
+# - CocoaPods: iOS dependency management
+# - Fastlane: CI/release automation
+# - xcpretty: beautify Xcode build logs
+# - dotenv: load environment variables from .env
+# - cocoapods-deintegrate / cocoapods-clean: clean up Pod-related files
 
 gem "cocoapods", require: false

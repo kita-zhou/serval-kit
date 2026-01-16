@@ -98,7 +98,7 @@ class HarmonyValues {
     size_t str_len = 0;
     std::string str;
     auto status = napi_get_value_string_utf8(env, value, nullptr, 0,
-                                             &str_len);  // 获取字符串长度
+                                             &str_len);  // get string length
     if (status != napi_ok) {
       return "";
     }

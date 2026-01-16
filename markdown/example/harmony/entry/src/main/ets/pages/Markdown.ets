@@ -53,46 +53,46 @@ export struct Markdown {
     selectionHighlightColor: "6679bbff"
   }
   private content: string = `
-# 以下是普通文本：
+# The following is plain text:
 
 ![](inlineview://aaa)
 
-这是一段普通文本，***111****1*包含**粗体**、*斜体*、***粗体+ testtetstest 斜体***、***斜体*粗体混合**、~~删除线~~、\`inline code\`，<span class="mark">这些<span class="red">红色<span class="bold">加粗<span class="underline">下划线</span><span class="big">大字号<span class="small">*小斜体*</span></span></span></span>混合的行内的样式</span>，以及表情：😄
+This is a plain text paragraph, ***111****1* containing **bold**, *italic*, ***bold + testtetstest italic***, ***italic* mixed with bold**, ~~strikethrough~~, \`inline code\`, <span class="mark">these <span class="red">red <span class="bold">bold <span class="underline">underlined</span><span class="big">large font <span class="small">*small italic*</span></span></span></span> mixed inline styles</span>, and emoji: 😄
 
-### 以下是引用块：
+### The following is a blockquote:
 
-> 读一本好书，就是在和高尚的人谈话。 [歌德](url://link)
+> Reading a good book is like talking to a noble soul. [Goethe](url://link)
 > \`\`\`
 > code block in quote code block in quote code block in quote code block in quote code block in quote
 > \`\`\`
-> 雇用制度对工人不利，但工人根本无力摆脱这个制度。阮一峰
+> The employment system is unfavorable to workers, but workers are powerless to break free from it. Ruan Yifeng
 
 ![](inlineview://aaa)
 
 -----
 
-### 以下是列表：
+### The following are lists:
 
-1. 有序列表1
-    1. 嵌套有序列表1
-    2. 嵌套有序列表2
-    3. 嵌套有序列表3
-2. 有序列表2
-3. 有序列表3
+1. Ordered list 1
+    1. Nested ordered list 1
+    2. Nested ordered list 2
+    3. Nested ordered list 3
+2. Ordered list 2
+3. Ordered list 3
 
-- 无序列表1
-  - 无序列表2
-  - 无序列表3
-- 无序列表4
+- Unordered list 1
+  - Unordered list 2
+  - Unordered list 3
+- Unordered list 4
 
-### 以下是表格：
+### The following is a table:
 
-| 编程语言 | 创始人       | 发布年份 | 主要应用领域       |
+| Programming Language | Creator | Year | Primary Application |
 | :------- | :----------- | :------- | :----------------- |
-| Python   | Guido van Rossum | 1991    | 数据分析、AI开发   |
-| Java     | James Gosling   | 1995    | 企业级开发、Android |
-| JavaScript | Brendan Eich   | 1995    | 前端开发、全栈开发 |
-| Go       | Robert Griesemer 等 | 2009   | 云计算、后端服务   |
+| Python   | Guido van Rossum | 1991    | Data analysis, AI development |
+| Java     | James Gosling   | 1995    | Enterprise development, Android |
+| JavaScript | Brendan Eich   | 1995    | Frontend development, Full‑stack development |
+| Go       | Robert Griesemer et al. | 2009   | Cloud computing, Backend services |
 
 `
   private contentLength = 1

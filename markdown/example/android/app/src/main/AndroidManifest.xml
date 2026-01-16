@@ -10,7 +10,7 @@
             android:supportsRtl="true"
             android:testOnly="false"
             android:theme="@style/AppTheme">
-        <!-- 若使用 AppCompat，确保使用正确的主题 -->
+        <!-- If using AppCompat, ensure the correct theme -->
         <activity
                 android:name=".MainActivity"
                 android:exported="true">

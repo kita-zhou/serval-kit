@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
     EditText inputEditText = findViewById(R.id.inputEditText);
     Button button = findViewById(R.id.button);
 
-    // 为按钮设置点击事件监听器
+    // set click listener for the button
     button.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {

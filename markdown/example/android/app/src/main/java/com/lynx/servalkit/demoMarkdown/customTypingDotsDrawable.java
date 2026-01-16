@@ -13,13 +13,13 @@ public class customTypingDotsDrawable extends Drawable {
   private static final int DOT_COUNT = 3;
   private static final int DOT_RADIUS = 8;
   private static final int DOT_SPACING = 20;
-  private static final int ANIMATION_DURATION = 600;  // 动画周期600ms
+  private static final int ANIMATION_DURATION = 600;  // animation cycle 600ms
 
   private final Paint[] dotPaints;
   private final long startTime;
 
   public customTypingDotsDrawable() {
-    // 初始化三个点的画笔
+    // initialize paint for three dots
     dotPaints = new Paint[DOT_COUNT];
     int[] colors = {Color.RED, Color.YELLOW, Color.BLUE};
 
@@ -34,27 +34,27 @@ public class customTypingDotsDrawable extends Drawable {
 
   @Override
   public void draw(@NonNull Canvas canvas) {
-    // 计算动画进度
+    // compute animation progress
     long elapsed =
         (SystemClock.uptimeMillis() - startTime) % ANIMATION_DURATION;
     float progress = elapsed / (float)ANIMATION_DURATION;
 
-    // 获取drawable的边界
+    // get drawable bounds
     Rect bounds = getBounds();
     float centerY = bounds.centerY();
     float startX = bounds.centerX() - (DOT_COUNT - 1) * DOT_SPACING / 2f;
 
-    // 绘制三个点
+    // draw three dots
     for (int i = 0; i < DOT_COUNT; i++) {
       float phase = (progress + i / (float)DOT_COUNT) % 1f;
-      // 使用正弦函数创建上下运动
+      // use sine function to create vertical motion
       float yOffset = (float)Math.sin(phase * 2 * Math.PI) * 10;
 
       canvas.drawCircle(startX + i * DOT_SPACING, centerY + yOffset, DOT_RADIUS,
                         dotPaints[i]);
     }
 
-    // 触发下一帧动画
+    // trigger next animation frame
     invalidateSelf();
   }
 

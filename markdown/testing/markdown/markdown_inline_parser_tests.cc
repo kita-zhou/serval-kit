@@ -208,49 +208,49 @@ InlineNodeDescriptor HtmlTagSelfClose(std::string tag) {
 
 void Expect(std::string_view text, const InlineNodeDescriptor& node);
 TEST(MarkdownInlineParserTest, Stars) {
-  Expect("*斜体*正常文本",
-         Root({Italic("*", {RawText("斜体")}), RawText("正常文本")}));
-  Expect("正常文本*斜体*",
-         Root({RawText("正常文本"), Italic("*", {RawText("斜体")})}));
-  Expect("***粗斜体***", Root({BoldItalic("*", {RawText("粗斜体")})}));
-  Expect("正常文本*斜体*正常文本", Root({
-                                       RawText("正常文本"),
+  Expect("*italic*normal text",
+         Root({Italic("*", {RawText("italic")}), RawText("normal text")}));
+  Expect("normal text*italic*",
+         Root({RawText("normal text"), Italic("*", {RawText("italic")})}));
+  Expect("***bold italic***", Root({BoldItalic("*", {RawText("bold italic")})}));
+  Expect("normal text*italic*normal text", Root({
+                                       RawText("normal text"),
                                        Italic("*",
                                               {
-                                                  RawText("斜体"),
+                                                  RawText("italic"),
                                               }),
-                                       RawText("正常文本"),
+                                       RawText("normal text"),
                                    }));
-  Expect("正常文本**加粗**正常文本", Root({
-                                         RawText("正常文本"),
-                                         Bold("*", {RawText("加粗")}),
-                                         RawText("正常文本"),
+  Expect("normal text**bold**normal text", Root({
+                                         RawText("normal text"),
+                                         Bold("*", {RawText("bold")}),
+                                         RawText("normal text"),
                                      }));
-  Expect("正常文本**斜体*正常文本",
-         Root({RawText("正常文本*"), Italic("*", {RawText("斜体")}),
-               RawText("正常文本")}));
-  Expect("正常文本*斜体**正常文本",
-         Root({RawText("正常文本"), Italic("*", {RawText("斜体")}),
-               RawText("*正常文本")}));
-  Expect("正常文本***加粗斜体*加粗**正常文本",
-         Root({RawText("正常文本"),
-               Bold("*", {Italic("*", {RawText("加粗斜体")}), RawText("加粗")}),
-               RawText("正常文本")}));
+  Expect("normal text**italic*normal text",
+         Root({RawText("normal text*"), Italic("*", {RawText("italic")}),
+               RawText("normal text")}));
+  Expect("normal text*italic**normal text",
+         Root({RawText("normal text"), Italic("*", {RawText("italic")}),
+               RawText("*normal text")}));
+  Expect("normal text***bold italic*bold**normal text",
+         Root({RawText("normal text"),
+               Bold("*", {Italic("*", {RawText("bold italic")}), RawText("bold")}),
+               RawText("normal text")}));
 }
 
 TEST(MarkdownInlineParserTest, Underlines) {
-  Expect("___粗斜体___", Root({BoldItalic("_", {RawText("粗斜体")})}));
-  Expect("__粗体__", Root({Bold("_", {RawText("粗体")})}));
-  Expect("_斜体_", Root({Italic("_", {RawText("斜体")})}));
+  Expect("___bold italic___", Root({BoldItalic("_", {RawText("bold italic")})}));
+  Expect("__bold__", Root({Bold("_", {RawText("bold")})}));
+  Expect("_italic_", Root({Italic("_", {RawText("italic")})}));
 }
 
 TEST(MarkdownInlineParserTest, InlineCode) {
-  Expect("`代码块`", Root({InlineCode(1, "代码块")}));
-  Expect("``代码块`", Root({RawText("``代码块`")}));
-  Expect("``代码块``", Root({InlineCode(2, "代码块")}));
-  Expect("``代码块```", Root({RawText("``代码块```")}));
-  Expect("```代码块```", Root({InlineCode(3, "代码块")}));
-  Expect("```代`码``块````123```", Root({InlineCode(3, "代`码``块````123")}));
+  Expect("`code block`", Root({InlineCode(1, "code block")}));
+  Expect("``code block`", Root({RawText("``code block`")}));
+  Expect("``code block``", Root({InlineCode(2, "code block")}));
+  Expect("``code block```", Root({RawText("``code block```")}));
+  Expect("```code block```", Root({InlineCode(3, "code block")}));
+  Expect("```code`block````123```", Root({InlineCode(3, "code`block````123")}));
 }
 
 TEST(MarkdownInlineParserTest, Image) {
